@@ -1,8 +1,8 @@
 # Author: Semih SAK
-# This script generate password how much you want and also you could save csv file.
+# This script generate passwords how much you want and also you could save csv file.
 # License MIT
-# Usage: python random_pass_gen.py -c  "generated password show console output"
-# Usage: python random_pass_gen.py -o  "generated password will store any csv file"
+# Usage: python random_pass_gen.py -c  "generated passwords show console output"
+# Usage: python random_pass_gen.py -o  "generated passwords will store any csv file"
 
 import csv
 from sys import argv
@@ -19,7 +19,7 @@ symbols = "@!#/%^$&"
 
 all = low + up + numbers + symbols
 
-def writecvs():
+def writecsv():
     with open(filename,"w") as csvfile:
         writer = csv.writer(csvfile,delimiter='\n')
         writer.writerow(['passwords'])
@@ -32,8 +32,10 @@ def passgen():
 def compare():
     if length > 70 and pieces > 0:
         raise ValueError("Value for length is too large")
+    
     elif length < 0 or pieces < 0:
         raise ValueError("Value length or pieces cannot be negative")
+    
     elif length == 0 or pieces == 0:
         print("length or pieces cannot be zero")
         exit(1)
@@ -45,9 +47,10 @@ for arg in argv:
     
     if arg == "-o":
         compare()
-        print(f"Generated password will store {filename} file")
+        print(f"Generated passwords will store {filename} file")
         passgen()
-        writecvs()
+        writecsv()
+        print("Finished")
         
     elif arg == "-c": 
         compare()
